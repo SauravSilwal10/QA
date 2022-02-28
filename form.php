@@ -9,6 +9,15 @@ $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["document"]["name"]);
 if(isset($_POST["submit"])) {
     move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-    print("Thank you. Your file is uploaded.");
+    echo '<script type="text/javascript">
+    const para = document.createElement("p");
+    para.innerHTML = "Thank you. Your file is uploaded.";
+    document.getElementById("success-message").appendChild(para);
+    setTimeout(() => {
+        const elem = document.getElementById("success-message");
+        elem.parentNode.removeChild(elem);
+    }, 2000);    
+    </script>';
 }
 ?>
+
